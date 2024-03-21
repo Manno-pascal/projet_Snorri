@@ -1,0 +1,68 @@
+{% extends 'security.html.twig' %}
+
+{% block title %}Snorri | Connexion{% endblock %}
+{% block body %}
+
+    <form method="post">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-7 col-md-7 col-sm-8 col-12 my-auto">
+                <div>
+                    <div class="card custom-card">
+                        <div class="card-body p-5">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset('theme/assets/images/brand-logos/desktop-logo.png') }}" alt="logo" class="desktop-logo w-25 my-2">
+                            </div>
+                            <p class="h5 fw-semibold mb-5 mt-3">Se connecter</p>
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                            {% if app.user %}
+                                <div class="mb-5">
+                                    <div>Vous êtes déjà connecté en tant que {{ app.user.userIdentifier }}, vous allez être redirigé dans 5 secondes...</div>
+                                    <div>Cliquez ici pour vous déconnecter : <a class="text-danger" href="{{ path('app_logout') }}">Se déconnecter</a></div>
+                                </div>
+                            {% endif %}
+                            <div class="row gy-3">
+                                <div class="col-xl-12 mt-0">
+                                    <label for="inputEmail" value="{{ last_username }}" class="form-label text-default">Email</label>
+                                    <input type="email" name="email" class="form-control form-control-lg"
+                                           id="inputEmail" placeholder="john-doe@domaine.fr">
+                                </div>
+                                <div class="col-xl-12 mb-3">
+                                    <label for="inputPassword" class="form-label text-default d-block">Mot de passe<a
+                                                href="{{ path('forgotten_password') }}" class="float-end text-danger">Mot de
+                                            passe oublié ?</a></label>
+                                    <div class="input-group">
+                                        <input type="password" name="password" class="form-control form-control-lg"
+                                               id="inputPassword" placeholder="Mot de passe">
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <label class="form-check-label text-muted fw-normal" for="defaultCheck1">
+                                                Se souvenir de moi
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="_csrf_token"
+                                           value="{{ csrf_token('authenticate') }}"
+                                    >
+                                </div>
+                                <div class="col-xl-12 d-grid mt-2">
+                                    <button type="submit" class="btn btn-lg btn-primary">Se connecter</button>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p class="fs-12 text-muted mt-4">Vous n'avez pas encore de compte recruteur ? <a
+                                            href="{{ path('app_register') }}" class="text-primary">S'enregistrer</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+
+

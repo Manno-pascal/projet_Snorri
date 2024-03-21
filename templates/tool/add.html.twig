@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snorri | Proposition outil{% endblock %}
+
+{% block body %}
+    {% include "layout/_title.html.twig" with {'title' : "Outil", 'subTitle' : "Proposition d'outil"} %}
+    <div {{ stimulus_controller('addTool') }} data-addTool-popup-value="{{ popup }}" class="d-flex justify-content-center w-100">
+        {{ form_start(form) }}
+        <div class="bg-white p-4 w-100 rounded">
+            <div class="d-flex justify-content-center m-2">
+                <div class="w-50 m-1">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title) }}
+                    {{ form_errors(form.title) }}
+                </div>
+                <div class="w-50 m-1">
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                    {{ form_errors(form.category) }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center m-2">
+                <div class="w-50 m-1">
+                    {{ form_label(form.url) }}
+                    {{ form_widget(form.url) }}
+                    {{ form_errors(form.url) }}
+                </div>
+                <div class="w-50 m-1">
+                    {{ form_label(form.image) }}
+                    {{ form_widget(form.image) }}
+                    {{ form_errors(form.image) }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-center m-2">
+                <div class="w-100 m-1">
+                    {{ form_label(form.description ) }}
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </div>
+            </div>
+            <button class="btn btn-primary" id="submitBtn">
+                <em class="bx bx-send side-menu__icon me-3"></em>
+                <span>Proposer l'outil</span>
+            </button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

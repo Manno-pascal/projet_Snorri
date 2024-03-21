@@ -1,0 +1,4 @@
+<div class="card-body" {{ stimulus_controller('documentUploader') }} data-documentUploader-entity-id-value="{{ entity.id }}"
+     data-documentUploader-entity-class-value="{{ getClass(entity)}}" data-documentUploader-entity-column-value="{{ column }}" class="loaded-element">
+    <form action="/target" class="dropzone" id="{{ column~"Dropzone" }}"></form>
+</div>

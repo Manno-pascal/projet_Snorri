@@ -1,0 +1,63 @@
+<div class="modal fade modal-lg" id="staticBackdrop" data-bs-backdrop="static"
+     data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="staticBackdropLabel">Modifier une offre</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            {{ form_start(form) }}
+            <div class="modal-body">
+                <div class="d-flex justify-content-center m-2">
+                    <div class="w-50 m-1">
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                        {{ form_errors(form.title) }}
+                    </div>
+                    <div class="w-50 m-1">
+                        {{ form_label(form.location) }}
+                        {{ form_widget(form.location) }}
+                        {{ form_errors(form.location) }}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-2">
+                    <div class="w-50 m-1">
+                        {{ form_label(form.contract_type) }}
+                        {{ form_widget(form.contract_type) }}
+                        {{ form_errors(form.contract_type) }}
+                    </div>
+                    <div class="w-50 m-1">
+                        {{ form_label(form.salary) }}
+                        {{ form_widget(form.salary) }}
+                        {{ form_errors(form.salary) }}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-2">
+                    <div class="w-50 m-1">
+                        {{ form_label(form.date) }}
+                        {{ form_widget(form.date) }}
+                        {{ form_errors(form.date) }}
+                    </div>
+                    <div class="w-50 m-1">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center m-2">
+                    <div class="w-100 m-1">
+                        {{ form_label(form.description ) }}
+                        {{ form_widget(form.description) }}
+                        {{ form_errors(form.description) }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal"><em class="bx bx-x side-menu__icon me-3"></em>Fermer
+                </button>
+                <button type="submit" class="btn btn-primary"><em class="bx bx-edit side-menu__icon me-3"></em>Editer</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

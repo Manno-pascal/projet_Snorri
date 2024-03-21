@@ -1,0 +1,12 @@
+<div class="d-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+    <h1 class="page-title fw-semibold fs-18 mb-0">
+        {{ title }}
+            {% if subTitle is defined %}
+                <i class="bx bx-chevron-right me-2 ms-2 text-secondary"></i><span class="text-muted">{{ subTitle }}</span>
+            {% endif %}
+    </h1>
+    <div class="ms-md-1 ms-0">
+        {% block actions %}
+        {% endblock actions %}
+    </div>
+</div>

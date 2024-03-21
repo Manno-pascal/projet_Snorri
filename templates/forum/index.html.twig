@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snorri | Forum{% endblock %}
+
+{% block body %}
+    {% set primaryCategories = [
+        constant('App\\Enum\\CategoryEnum::CATEGORY_CSS').value,
+        constant('App\\Enum\\CategoryEnum::CATEGORY_HTML').value,
+        constant('App\\Enum\\CategoryEnum::CATEGORY_JAVASCRIPT').value,
+        constant('App\\Enum\\CategoryEnum::CATEGORY_PHP').value,
+        constant('App\\Enum\\CategoryEnum::CATEGORY_BDD').value
+    ] %}
+    {% set categoriesList = getStaticMethod('App\\Enum\\CategoryEnum', 'getTranslatedCategoriesList') %}
+    {% embed "layout/_title.html.twig" with {'title' : "Forum", 'subTitle' : "Liste des fils de discussion"} %}
+        {% block actions %}
+            <a class="btn btn-primary mt-2 mb-4" href="{{ path("app_forum_add_thread") }}"><em class="bx bx-plus side-menu__icon me-3"></em>Créer un fil</a>
+        {% endblock actions %}
+    {% endembed %}
+    <div {{ stimulus_controller('forum') }}  data-forum-user-id-value="{{ app.user.id }}">
+        <div class="my-2 d-flex justify-content-between">
+            <div class="d-flex">
+                <div class="d-flex">
+                    <div>
+                        <input id='searchInput' class="form-control form-control-lg mt-2 mb-4"
+                               placeholder="Recherche d'un mot clé">
+                    </div>
+                    <div class="mx-2">
+                        <button data-action="click->forum#displayThreadsByKeyword"
+                                class="btn btn-lg btn-primary mt-2 mb-4"><em class="bx bx-search side-menu__icon"></em>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="table-responsive">
+                <div class="nav nav-tabs tab-style-1 d-flex d-sm-none">
+                    <div class="d-flex align-items-center">
+                        <label for="categorySelect">Catégorie</label>
+                        <select id="categorySelect" class="form-select mx-2">
+                            {% for category in categories %}
+                                {% if category != 'other' %}
+                                    <option data-action="click->forum#displayThreadsByCategory" {{ primaryCategories[0] == category ? "selected" }} data-category="{{ category }}">{{ categoriesList[category] }}</option>
+                                {% endif %}
+                            {% endfor %}
+                            <option data-action="click->forum#displayThreadsByCategory"  data-category="other">Autre</option>
+                            <option data-action="click->forum#displayThreadsByCategory"  data-category="favorites">Favoris</option>
+                        </select>
+                    </div>
+                </div>
+                <ul class="nav nav-tabs tab-style-1 d-none d-sm-flex" role="tablist">
+                    {% for category in categories %}
+                        {% if category in primaryCategories %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {{ primaryCategories[0] == category ? "active" }}"
+                                        data-action="click->forum#displayThreadsByCategory"
+                                        data-category="{{ category }}"
+                                        aria-current="page"
+                                        aria-selected="true"
+                                        role="tab">{{ categoriesList[category] }}</button>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link"
+                                data-action="click->forum#displayThreadsByCategory"
+                                data-category="favorites"
+                                aria-current="page"
+                                aria-selected="true"
+                                role="tab">Favoris
+                        </button>
+                    </li>
+                    <li>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);"
+                           role="button"
+                           aria-expanded="false">Autres</a>
+                        <ul class="dropdown-menu">
+                            {% for category in categories %}
+                                {% if category not in primaryCategories %}
+                                    <li><a class="nav-link dropdown-item" data-bs-toggle="tab" role="tab"
+                                           data-category="{{ category }}"
+                                           data-action="click->forum#displayThreadsByCategory"
+                                           aria-selected="false" tabindex="-1">{{ categoriesList[category] }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+                <table class="table text-nowrap table-hover w-100">
+                    <thead>
+                    <tr class="text-primary">
+                        <th scope="col">Titre</th>
+                        <th scope="col">Technologie</th>
+                        <th scope="col">Auteur</th>
+                        <th scope="col">Dernier message</th>
+                    </tr>
+                    </thead>
+                    <tbody class="threadsContainer">
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end mt-2">
+                <ul id="pagination" class="pagination-sm"></ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{#
+Voici le rendu twig de l'index des outils.
+    Chaque vue twig extend du base.html.twig qui contient le squelette par default de la page. dans ce squelette on spécifie
+    des blocks nottamment le block title et body. on rappelle ensuite ces blocks afin d'y apporter des modifier et y écrire
+    du code html dedans. On ne peux pas écrire du code à l'exterieur de ces blocks
+#}
+
+{% extends 'base.html.twig' %}
+{% block title %}Snorri | Offres d'emplois{% endblock %}
+{% block body %}
+{#
+Nous utilisons la framework stimulus, il s'agit d'un framework afin de facilité l'utilisation de js dans le twig.
+    On fait appelle à des controllers javascript grace au {{ stimulus_controller('offer') }}, il s'agit ici du
+    *assets/controllers/offer_controller.js*
+    le code js contenu dans ce controller sera donc executé dans cette vue
+    On include également une layout (morceau de code) le title contenant le template pour afficher le fil d'ariane
+    voir *templates/layout/_title.html.twig* on lui passe des variables tel que le titre et le sous titre
+#}
+    <div {{ stimulus_controller('offer') }} class="container-fluid">
+        {% include "layout/_title.html.twig" with {'title' : "Offres d'emplois", 'subTitle' : "Liste des offres" }%}
+        <div class="d-flex justify-content-between p-2 row">
+            <div class="col-lg-3 col-md-5 col-sm-5">
+                <div>
+                    {#
+                    En twig on découpe les page par composants. chaque composant est ensuite inclu dans la vue de
+                        cette façon comme des poupées russes. voir les differents composants listés ci dessous
+                    #}
+
+                    {% include "offer/_offer_list_container.html.twig" %}
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7 col-sm-7 bg-white rounded d-none d-sm-block p-lg-3 p-xl-5">
+                <div class="h-100">
+                    {% include "offer/_offer_card.html.twig" %}
+                </div>
+            </div>
+            <div class="d-block d-sm-none">
+                {% include "offer/_modal_offer_card.html.twig" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

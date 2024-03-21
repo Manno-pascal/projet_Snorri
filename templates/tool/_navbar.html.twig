@@ -1,0 +1,38 @@
+<ul class="nav nav-tabs tab-style-1 d-none d-sm-flex" role="tablist">
+    {% for category in categories %}
+        {% if category in primaryCategories %}
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {{ primaryCategories[0] == category ? "active" }}"
+                        data-action="click->tool#displayToolsByCategory"
+                        data-category="{{ category }}"
+                        aria-current="page"
+                        aria-selected="true"
+                        role="tab">{{ categoriesList[category] }}</button>
+            </li>
+        {% endif %}
+    {% endfor %}
+    <li class="nav-item" role="presentation">
+        <button class="nav-link"
+                data-action="click->tool#displayToolsByCategory"
+                data-category="favorites"
+                aria-current="page"
+                aria-selected="true"
+                role="tab">Favoris
+        </button>
+    </li>
+    <li>
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);"
+           role="button"
+           aria-expanded="false">Autres</a>
+        <ul class="dropdown-menu">
+            {% for category in categories %}
+                {% if category not in primaryCategories %}
+                    <li><a class="nav-link dropdown-item" data-bs-toggle="tab" role="tab"
+                           data-category="{{ category }}"
+                           data-action="click->tool#displayToolsByCategory"
+                           aria-selected="false" tabindex="-1">{{ categoriesList[category] }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+</ul>

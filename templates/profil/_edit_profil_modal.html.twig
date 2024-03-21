@@ -1,0 +1,38 @@
+<div class="modal fade" id="exampleModalScrollable2" tabindex="-1"
+     aria-labelledby="exampleModalScrollable2" data-bs-keyboard="false"
+     aria-hidden="true">
+    <!-- Scrollable modal -->
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="staticBackdropLabel2">Editer mon profil
+                </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <nav class="nav nav-style-6 nav-pills mb-3 nav-justified d-sm-flex d-block" role="tablist">
+                        <a class="nav-link active" data-bs-toggle="tab" role="tab" aria-current="page"
+                           href="#nav-products-justified" aria-selected="false" tabindex="-1">Profil</a>
+                        <a class="nav-link" data-bs-toggle="tab" role="tab" href="#nav-cart-justified"
+                           aria-selected="false" tabindex="-1">Avatar</a>
+                        <a class="nav-link" data-bs-toggle="tab" role="tab" href="#nav-orders-justified"
+                           aria-selected="true">CV </a>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane text-muted active show" id="nav-products-justified" role="tabpanel">
+                            {{ form(form) }}
+                        </div>
+                        <div class="tab-pane text-muted" id="nav-cart-justified" role="tabpanel">
+                            {% include "document/_document_dropzone.html.twig"  with { 'entity' : user, 'column' : 'avatar' } %}
+                        </div>
+                        <div class="tab-pane text-muted" id="nav-orders-justified" role="tabpanel">
+                            {% include "document/_document_dropzone.html.twig"  with { 'entity' : user, 'column' : 'cv' } %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

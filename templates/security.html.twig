@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+    <!-- Main Theme Js -->
+    <script src="{{ asset("theme/assets/js/main.js") }}"></script>
+
+    <!-- Bootstrap Css -->
+    <link id="style" href="{{ asset("theme/assets/libs/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
+
+    <!-- Style Css -->
+    <link href="{{ asset("theme/assets/css/styles.min.css") }}" rel="stylesheet">
+
+    <!-- Icons Css -->
+    <link href="{{ asset("theme/assets/css/icons.css") }}" rel="stylesheet">
+
+
+    <!-- Simplebar Css -->
+    <link href="{{ asset("theme/assets/libs/simplebar/simplebar.min.css") }}" rel="stylesheet">
+
+    <!-- Color Picker Css -->
+    <link rel="stylesheet" href="{{ asset("theme/assets/libs/flatpickr/flatpickr.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("theme/assets/libs/@simonwep/pickr/themes/nano.min.css") }}">
+
+    <!-- Animate Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}
+
+    {% endblock %}
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}
+
+    {% endblock %}
+</head>
+<body {{ stimulus_controller('authentication') }} {% if app.user %}  data-authentication-is-connected-value=true {% endif %} class=" d-flex align-items-center justify-content-center">
+<div id="particles-js" class="position-absolute bg-dark z-n1"></div>
+<div class="main-content">
+    <div class="container-fluid">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</div>
+<!-- Popper JS -->
+<script src="{{ asset("theme/assets/libs/@popperjs/core/umd/popper.min.js") }}"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ asset("theme/assets/libs/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+
+<!-- Node Waves JS-->
+<script src="{{ asset("theme/assets/libs/node-waves/waves.min.js") }}"></script>
+
+
+<!-- Color Picker JS -->
+<script src="{{ asset("theme/assets/libs/@simonwep/pickr/pickr.es5.min.js") }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</body>
+</html>

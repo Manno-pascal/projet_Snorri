@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snorri | Accueil{% endblock %}
+
+{% block body %}
+    <div {{ stimulus_controller('home') }} class="d-flex justify-content-center flex-column align-items-center">
+        <div id="carouselExampleCaptions" class="carousel slide col-12" data-bs-ride="carousel" style="height:50vh;">
+            <div class="carousel-inner col-12" style="height:50vh;">
+                {% for information in informations %}
+                    <div class="carousel-item {{ loop.index == 1 ? 'active' : '' }}" style="height:50vh;">
+                        <img src="{{ asset(information.image)|default(asset('/public/assets/images.placeholder_picture.jpg')) }}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-md-block bg-light text-dark rounded position-absolute">
+                            <h5>{{ information.title }}</h5>
+                            <p>{{ information.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="mt-2">
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+            <div id="calendar-lg" class="d-none d-sm-block" style="height:5vh"></div>
+            <div id="calendar-sm" class="d-block d-sm-none" style="height:5vh"></div>
+        </div>
+    </div>
+{% endblock %}

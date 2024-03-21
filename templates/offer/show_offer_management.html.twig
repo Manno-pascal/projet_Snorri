@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snorri | Proposer une offre{% endblock %}
+{% set statusList = getStaticMethod('App\\Enum\\StatusEnum', 'getTranslatedStatusList') %}
+{% set contractTypeList = getStaticMethod('App\\Enum\\ContractTypeEnum', 'getTranslatedContractsList') %}
+{% block body %}
+    {% embed "layout/_title.html.twig" with {'title' : "Offres d'emplois", 'subTitle' : "Proposition d'offre"} %}
+        {% block actions %}
+            <a class="btn btn-primary" href="{{ path('app_offer_management') }}"><em class="bx bx-arrow-back side-menu__icon me-3"></em>Retour</a>
+        {% endblock actions %}
+    {% endembed %}
+    <div class="w-100 d-flex justify-content-center">
+        <div class="col-lg-9 col-md-6 col-sm-7 bg-white rounded">
+            <div class="h-100 p-5 d-flex flex-column justify-content-between">
+                <div>
+                    <div>
+                        <p class="fs-15 fw-semibold" id="titleOffer">{{ offer.title }}</p>
+                    </div>
+                    <div>
+                        <p class="text-primary fs-11"
+                           id="companyNameOffer">{{ offer.userCreator.companyName|default('S/O') }}</p>
+                    </div>
+                    <div class="d-flex text-gray text-primary fs-11">
+                        <p class="" id="contractTypeOffer">{{ offer.contractType }} </p>
+                        <p class="mx-2"> • </p>
+                        <p class="" id="locationOffer">{{ offer.location }}</p>
+                        {% if offer.salary != "" %}
+                            <p class="mx-2"> • </p>
+                            <p class="" id="salaryOffer">{{ offer.salary }}</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="h-75 border border-black p-2">
+                    <p id="descriptionOffer">{{ offer.description }}</p>
+                </div>
+                <div class="d-flex flex-column align-items-start justify-content-end mt-2 text-gray">
+                    <p class="fs-semibold fs-14" id="dateOffer">{{ offer.date|date('d/m/Y', 'Europe/Paris') }}</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop"><em class="bx bx-edit side-menu__icon me-3"></em>Modifier
+                        </button>
+                        <a href="{{ path('app_offer_management_delete', {'id':offer.id}) }}" class="btn btn-danger"><em class="bx bx-trash side-menu__icon me-3"></em>Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ include("offer/_edit_offer_modal.html.twig") }}
+{% endblock %}

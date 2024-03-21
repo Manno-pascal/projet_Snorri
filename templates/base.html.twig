@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html {{ theme == "dark" ?  'data-theme-dark="dark" data-header-styles="dark" data-menu-styles="dark" data-theme-mode="dark"' : "" }}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>{% block title %}Snorri{% endblock %}</title>
+    <link rel="icon"
+          href="{{ asset('theme/assets/images/brand-logos/toggle-logo.png') }}">
+    <!-- Main Theme Js -->
+    <script src="{{ asset("theme/assets/js/main.js") }}"></script>
+
+    <!-- Bootstrap Css -->
+    <link id="style" href="{{ asset("theme/assets/libs/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
+
+    <!-- Style Css -->
+    <link href="{{ asset("theme/assets/css/styles.min.css") }}" rel="stylesheet">
+
+    <!-- Icons Css -->
+    <link href="{{ asset("theme/assets/css/icons.css") }}" rel="stylesheet">
+
+    <!-- Node Waves Css -->
+    <link href="{{ asset("theme/assets/libs/node-waves/waves.min.css") }}" rel="stylesheet">
+
+    <!-- Simplebar Css -->
+    <link href="{{ asset("theme/assets/libs/simplebar/simplebar.min.css") }}" rel="stylesheet">
+
+    <!-- Color Picker Css -->
+    <link rel="stylesheet" href="{{ asset("theme/assets/libs/flatpickr/flatpickr.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("theme/assets/libs/@simonwep/pickr/themes/nano.min.css") }}">
+
+    <!-- Animate Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Select2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}
+
+    {% endblock %}
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}
+
+    {% endblock %}
+</head>
+<body>
+{% block sidebar %}
+    {{ include("layout/_sidebar.html.twig") }}
+{% endblock %}
+{% block header %}
+    {{ include("layout/_header.html.twig") }}
+{% endblock %}
+
+
+
+<div class="main-content app-content">
+    <div class="container-fluid">
+{% block body %}
+
+{% endblock %}
+    </div>
+</div>
+<div class="scrollToTop">
+    <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
+</div>
+<div id="responsive-overlay"></div>
+{% block footer %}
+    {{ include("layout/_footer.html.twig") }}
+{% endblock %}
+
+<!-- Popper JS -->
+<script src="{{ asset("theme/assets/libs/@popperjs/core/umd/popper.min.js") }}"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ asset("theme/assets/libs/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+
+<!-- Defaultmenu JS -->
+<script src="{{ asset("theme/assets/js/defaultmenu.min.js") }}"></script>
+
+<!-- Node Waves JS-->
+<script src="{{ asset("theme/assets/libs/node-waves/waves.min.js") }}"></script>
+
+<!-- Sticky JS -->
+<script src="{{ asset("theme/assets/js/sticky.js") }}"></script>
+
+<!-- Simplebar JS -->
+<script src="{{ asset("theme/assets/libs/simplebar/simplebar.min.js") }}"></script>
+<script src="{{ asset("theme/assets/js/simplebar.js") }}"></script>
+
+<!-- Color Picker JS -->
+<script src="{{ asset("theme/assets/libs/@simonwep/pickr/pickr.es5.min.js") }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</body>
+</html>

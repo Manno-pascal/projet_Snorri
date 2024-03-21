@@ -1,0 +1,51 @@
+<div class="border-bottom">
+    <div class="d-flex w-100">
+        <div class="fs-15 fw-semibold text-primary my-2">Offres d'emploi
+            <hr class="col-6">
+        </div>
+        <div class="dropdown ms-auto">
+            <button class="btn btn-sm btn-light" data-bs-toggle="dropdown">
+                <span>Filtrer</span>
+                <i class="fe fe-more-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="dropdown-item">
+                        <label for="location">Emplacement</label>
+                        <input type="text" name="location" id="location" class="form-control">
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                        <label for="contractType">Type de contrat</label>
+                        <select name="contractType" id="contractType" class="form-control">
+                            <option value=""></option>
+                            {% for key,value in contractList %}
+                                <option value="{{ value }}">{{ key }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                        <label for="keyword">Mot clé</label>
+                        <input type="text" name="keyword" id="keyword" class="form-control">
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                        <button class="btn btn-primary" data-action="click->offer#offersFilters">
+                            <em class="bx bx-filter-alt side-menu__icon me-3"></em>
+                            Valider
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="overflow-y-auto offersContainer" style="height: 70vh">
+</div>
+<div class="d-flex justify-content-center mt-2">
+    <ul id="pagination" class="pagination-sm"></ul>
+</div>

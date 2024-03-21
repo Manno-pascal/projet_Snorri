@@ -1,0 +1,70 @@
+<header class="app-header">
+    <div class="main-header-container container-fluid">
+
+        <div class="header-content-left">
+            <div class="header-element">
+                <div class="horizontal-logo">
+                    <a href="{{ path('app_home') }}" class="header-logo">
+                        <img src="{{ asset('theme/assets/images/brand-logos/desktop-logo.png') }}" alt="logo"
+                             class="desktop-logo">
+                        <img src="{{ asset('theme/assets/images/brand-logos/toggle-logo.png') }}" alt="logo"
+                             class="toggle-logo">
+                        <img src="{{ asset('theme/assets/images/brand-logos/desktop-logo-light.png') }}" alt="logo"
+                             class="desktop-dark">
+                        <img src="{{ asset('theme/assets/images/brand-logos/toggle-logo-light.png') }}" alt="logo"
+                             class="toggle-dark">
+                    </a>
+                </div>
+            </div>
+            <div class="header-element">
+                <a aria-label="Hide Sidebar"
+                   class="sidemenu-toggle header-link animated-arrow hor-toggle horizontal-navtoggle"
+                   data-bs-toggle="sidebar" href="javascript:void(0);"><span></span></a>
+            </div>
+        </div>
+
+        <div class="header-content-right">
+            <div class="header-element header-theme-mode" {{ stimulus_controller('switchMode') }}
+                 data-action="click->switchMode#switch">
+                <a href="javascript:void(0);" class="header-link layout-setting">
+                            <span class="light-layout">
+                            <i class="bx bx-moon header-link-icon"></i>
+                            </span>
+                    <span class="dark-layout">
+                            <i class="bx bx-sun header-link-icon"></i>
+                            </span>
+                </a>
+            </div>
+
+
+            <div class="header-element">
+                <a href="#" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown"
+                   data-bs-auto-close="outside" aria-expanded="false">
+                    <div class="d-flex align-items-center">
+                        <div class="me-sm-2 me-0">
+                            <img src="{{ asset(app.user.avatarUrl) }}" alt="img" class="rounded-circle" width="32"
+                                 height="32">
+                        </div>
+                        <div class="d-sm-block d-none">
+                            <p class="fw-semibold mb-0 lh-1">{% if app.user %}{{ app.user.firstname~" "~app.user.lastname }}{% endif %}</p>
+                        </div>
+                    </div>
+                </a>
+
+                <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end"
+                    aria-labelledby="mainHeaderProfile">
+                    <li><a class="dropdown-item d-flex" href="{{ path('profil_show') }}"><i
+                                    class="ti ti-user-circle fs-18 me-2 op-7"></i>Profil</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a class="dropdown-item d-flex" href="{{ path('admin') }}"><i
+                                        class="ti ti-settings fs-18 me-2 op-7"></i>Administration</a></li>
+                    {% endif %}
+                    <li><a class="dropdown-item d-flex" href="{{ path('app_logout') }}"><i
+                                    class="ti ti-logout fs-18 me-2 op-7"></i>Se déconnecter</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</header>

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}SNORRI - Outils{% endblock %}
+{% set primaryCategories = getStaticMethod('App\\Enum\\CategoryEnum', 'getPrimaryCategoriesList') %}
+{% set categoriesList = getStaticMethod('App\\Enum\\CategoryEnum', 'getTranslatedCategoriesList') %}
+{% block body %}
+    <div {{ stimulus_controller('tool') }} data-tool-user-id-value="{{ app.user.id }}">
+        {% embed "layout/_title.html.twig" with {'title' : "Outil", 'subTitle' : "Liste d'outil"} %}
+            {% block actions %}
+                <a class="btn btn-primary" href="{{ path("app_tool_add") }}"><em
+                            class="bx bx-plus side-menu__icon me-3"></em>Proposer un outil</a>
+            {% endblock actions %}
+        {% endembed %}
+
+        {% include 'tool/_searchbox.html.twig' %}
+        <div class="card-body">
+            {% include 'tool/_responsive_navbar.html.twig' %}
+            {% include 'tool/_navbar.html.twig' %}
+            <div class="text-muted">
+                <div class="row toolsContainer">
+                </div>
+                <div class="d-flex justify-content-end">
+                    <ul id="pagination" class="pagination-sm"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

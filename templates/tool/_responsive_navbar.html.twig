@@ -1,0 +1,16 @@
+<div class="nav nav-tabs tab-style-1 d-flex d-sm-none">
+    <div class="d-flex align-items-center">
+        <label for="categorySelect">Catégorie</label>
+        <select id="categorySelect" class="form-select mx-2">
+            {% for category in categories %}
+                {% if category != 'other' %}
+                    <option data-action="click->tool#displayToolsByCategory" {{ primaryCategories[0] == category ? "selected" }}
+                            data-category="{{ category }}">{{ categoriesList[category] }}</option>
+                {% endif %}
+            {% endfor %}
+            <option data-action="click->tool#displayToolsByCategory" data-category="other">Autre</option>
+            <option data-action="click->tool#displayToolsByCategory" data-category="favorites">Favoris
+            </option>
+        </select>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snorri | Proposer une offre{% endblock %}
+{% set statusList = getStaticMethod('App\\Enum\\StatusEnum', 'getTranslatedStatusList') %}
+{% set contractTypeList = getStaticMethod('App\\Enum\\ContractTypeEnum', 'getTranslatedContractsList') %}
+{% set statusColorList = getStaticMethod('App\\Enum\\StatusEnum', 'getTextColorStatusList') %}
+{% block body %}
+    {% embed "layout/_title.html.twig" with {'title' : "Offres d'emplois", 'subTitle' : "Mes offres"} %}
+        {% block actions %}
+            <a class="btn btn-primary" href="{{ path("app_offer_add_offer") }}"><em class="bx bx-plus side-menu__icon me-3"></em>Proposer une offre</a>
+        {% endblock actions %}
+    {% endembed %}
+    <div class="row">
+        {% for offer in offers %}
+            <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="card custom-card" style="height:60vh">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between w-100">
+                            <div class="card-title">{{ offer.title }}</div>
+                            <div class="{{ statusColorList[offer.status] }}">{{ statusList[offer.status] }}</div>
+                        </div>
+                        <div class="text-gray">
+                            {{ contractTypeList[offer.contractType] }}
+                            •
+                            {{ offer.location|default('S/O') }}
+                            {% if offer.salary != null %}
+                                •
+                                {{ offer.salary|default('S/O') }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-body overflow-y-scroll h-50">
+                        <p class="card-text">{{ offer.description|default('S/O') }}</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <div>
+                            <a href="{{ path('app_offer_management_show', {'id':offer.id}) }}" class="btn btn-primary"><em class="bx bx-show side-menu__icon me-3"></em>Voir</a>
+                        </div>
+                        <div>
+                            <p class="card-text">{{ offer.date|date('d/m/Y', 'Europe/Paris') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

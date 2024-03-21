@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Snorri | {{ thread.title }}{% endblock %}
+
+{% block body %}
+    {% include "layout/_title.html.twig" with {'title' : "Fil de discussion", 'subTitle' : "Liste des messages"} %}
+    <div class="bg-white p-4 m-2 rounded" {{ stimulus_controller('thread') }} data-thread-thread-id-value="{{ thread.id }}" data-thread-user-id-value="{{ app.user.id }}">
+        <h2>{{ thread.title }}</h2>
+        <hr>
+        <div class="messagesContainer">
+        </div>
+        <div class="d-flex justify-content-end">
+            <ul id="pagination" class="pagination-sm"></ul>
+        </div>
+        {{ include("layout/_quill.html.twig") }}
+        <button class="btn btn-primary mt-2" data-action="click->thread#newMessage">Poster</button>
+    </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+[data-menu-styles=light] .app-sidebar .side-menu__item.active, [data-menu-styles=light] .app-sidebar .side-menu__item:hover {
+    background-color: #243672 !important;
+}
+
+.loaded-element{
+    display:none;
+}
+
+.loader {
+    height: 50px;
+    width: 50px;
+    background-image: url('/public/assets/images/letter.png');
+    mix-blend-mode: darken;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    position: relative;
+}
+
+.loader::after {
+    content: '';
+    height: 50px;
+    width: 50px;
+    background-image: url('/public/assets/images/logo.png');
+    animation: spin 3s linear infinite;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.bg-gray{
+   background-color: #82899d;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading {
+    display: flex;
+}
+
+.skeleton{
+
+    background: linear-gradient(
+            100deg,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, .5) 50%,
+            rgba(255, 255, 255, 0) 60%
+    ), #ededed;
+    background-size: 200% 100%;
+    background-position-x: 100%;
+    animation: 500ms loading ease-in-out infinite;
+}
+.skeleton-bg{
+    background-color:#ededed !important;
+}
+
+@keyframes loading {
+    to {
+        background-position-x: -20%;
+    }
+}
+
+
+.cursor-pointer{
+    cursor:pointer;
+}
+
+.cdd-bg{
+    background-color: #d4afb9;
+    width:min-content;
+}
+
+.cdi-bg{
+    background-color: #d1cfe2;
+    width:min-content;
+}
+
+.stage-bg{
+    background-color: #9cadce;
+    width:min-content;
+}
+
+.alternance-bg{
+    background-color: #7ec4cf;
+    width:min-content;
+}
+
+.interim-bg{
+    background-color: #daeaf6;
+    width:min-content;
+}
+
+.bg-lightBlue{
+    background-color: #e6e7f7;
+}
+
+[data-toggled="icon-overlay-close"] .animated-arrow span{
+    background:var(--header-prime-color)!important;
+}
+
+[data-toggled="icon-overlay-close"] .animated-arrow span::before, [data-toggled="icon-overlay-close"] .animated-arrow span::after{
+    transform: rotate(0);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    cursor: pointer;
+    height: .125rem;
+    width: 1.0625rem;
+    background: var(--header-prime-color);
+    position: absolute;
+    display: block;
+    content: "";
+}
+
+.animated-arrow span::after {
+    inset-block-start: .375rem!important;
+}
+
+.animated-arrow span::before {
+    inset-block-start: -.375rem!important;
+}

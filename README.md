@@ -25,7 +25,7 @@ https://themeforest.net/item/ynex-bootstrap-admin-dashboard-template/45551445
 
 Le téléchargement de l’application se réalise à partir d’un repository sur github. réaliser le téléchargement dans une console de windows à l’aide de git.
 ```shell
-git clone https://github.com/Manno-pascal/Projet-snorri.git
+git clone https://github.com/Manno-pascal/projet_Snorri.git
 ```
 Dès que le projet est téléchargé, il est nécessaire d’activer les extensions PHP nécessaires.  Pour cela, il faut exécuter la commande suivante :
 ```shell
